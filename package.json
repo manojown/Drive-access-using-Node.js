@@ -1,0 +1,20 @@
+
+{
+  "name": "drive-access",
+  "version": "1.0.0",
+  "engines": {
+    "npm": "3.10.3",
+    "node": "6.9.1"
+  },
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "raghu",
+  "dependencies": {
+    "express": "*",
+    "googleapis": "*"
+  }
+}

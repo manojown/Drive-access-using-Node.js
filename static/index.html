@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Drive access raghu</title>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+  </head>
+  <body ng-app="app" ng-controller="ctrl">
+
+ <span ng-if="!val"> <img src="sign-in-with-google.png" ng-click="login()"></span>
+  <span ng-if="val">
+  <table border="5">
+    <th>Files</th>
+    <tr ng-repeat="data in val"><td>{{data.name}}</td></tr>
+  </table>
+  </span>
+  </body>
+
+  <script>
+    var app = angular.module("app", []);
+
+    app.controller("ctrl", function($scope, $http, $window,$rootScope) {
+
+      var url;
+      var windowThatWasOpened;
+      //  this  is url   starting of project where to load start 
+      $http.get("url").then(function(response) {
+        url = response.data;
+      });
+
+
+      // this is called when ng-click login()  function is called 
+      $scope.login = function() {
+
+         //  open  url which is set  by url  part in app.js file
+        windowThatWasOpened = $window.open(url);
+
+        
+      };
+
+      //  this  is called whenever my url changed and the url  contain a code  which is used  to get further credentials
+      window.onmessage = function(e) {
+        windowThatWasOpened.close();
+        var urlWithCode = e.data;
+       //  to extract code from url to  get access and refresh tokens
+        var idx = urlWithCode.lastIndexOf("code=");
+        var code = urlWithCode.substring(idx + 5).replace("#","");
+
+       // whenever  token find in url then that  token related controler in app.js file called and set all credetials to acces  files
+
+        $http.get("tokens?code=" + code).then(function(response) {
+          console.log(response.data);
+          $rootScope.val = response.data;   /// this is file data of drive
+
+        });
+
+      };
+
+
+    });
+
+  </script>
+</html>
