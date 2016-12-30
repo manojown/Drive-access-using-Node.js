@@ -19,8 +19,7 @@ app.use(express.static('static'));
 
 //create OAuth2  object to set credentials in  further
 
-var OAuth2 = google.auth.OAuth2;
-
+var OAuth2 = google.auth.OAuth2; // this is  Oauth2 object
 // set all credentials
 var oauth2Client = new OAuth2("890200917783-o47i3demo8ccmhmpqb0cfmo6arji59i2.apps.googleusercontent.com", "8DpTEwpo6OuH8GAbeABUpRwr", "http://localhost:3000/oauthcallback");
 
