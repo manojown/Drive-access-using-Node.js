@@ -1,7 +1,8 @@
 var express = require("express");
 var google = require("googleapis");
-
-
+var Clentid = "your client ID";
+var Client_screre = "your clent Secret";
+var redirecturl  = "your url where you want to refirect ex- http://localhost/oauthcallback";
 var app = express();
 
 app.use(express.static('static'));
@@ -21,7 +22,7 @@ app.use(express.static('static'));
 
 var OAuth2 = google.auth.OAuth2; // this is  Oauth2 object
 // set all credentials
-var oauth2Client = new OAuth2("890200917783-o47i3demo8ccmhmpqb0cfmo6arji59i2.apps.googleusercontent.com", "8DpTEwpo6OuH8GAbeABUpRwr", "https://driveaccess.herokuapp.com/oauthcallback");
+var oauth2Client = new OAuth2(Clentid, Client_screre, redirecturl);
 
 // generate a url that asks permissions for drive scopes
 var scopes = [
