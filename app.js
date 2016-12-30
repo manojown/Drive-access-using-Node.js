@@ -2,7 +2,7 @@ var express = require("express");
 var google = require("googleapis");
 var Clentid = "your client ID";
 var Client_screre = "your clent Secret";
-var redirecturl  = "your url where you want to refirect ex- http://localhost/oauthcallback";
+var redirecturl  = "your url where you want to refirect ex- http://localhost:3000/oauthcallback";
 var app = express();
 
 app.use(express.static('static'));
